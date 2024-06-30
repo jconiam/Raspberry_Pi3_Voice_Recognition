@@ -1,0 +1,128 @@
+import speech_recognition as sr
+
+from gtts import gTTS
+import os
+
+r = sr.Recognizer()
+
+def posiciones(arch):
+    d = {}
+    x= open(arch, 'r')
+    for i in x:
+        p = i.strip().split(',')
+        nombre = p[0]
+        valor = p[1]
+        if p[0] not in d:
+            d[nombre] = valor
+    return d
+
+def valor(arch):
+    d ={}
+    x = open(arch, 'r')
+    for i in x:
+        p = i.strip().split(',')
+        nombre = p[1]
+        precio = p[2]
+        if p[1] not in d:
+            d[nombre] = precio
+    return d
+        
+def productos(d):
+    L = []
+    for i in d:
+        L.append(d[i])
+    x = ', '.join(L)
+    return x
+
+def dato(dat,d):
+    if dat in d:
+        for i in d:
+            if i == dat:
+                return d[i]
+    else:
+        return (f"el dato no existe en el diccionario")
+
+def encuentra_palabras(string):
+    x = string
+    p = x.split(' ')
+    return p
+
+ruta_arch = '/home/javier/arch'
+diccionario = posiciones(ruta_arch)
+precio = valor(ruta_arch)
+
+try:
+    mic = sr.Microphone()
+except OSError as e:
+    print(f"No se puede acceder al micrófono: {e}")
+
+try:
+    while True:
+        print("Hola, por favor, hable al microfono")
+        with mic as source:
+            print("Escuchando...")
+            audio = r.listen(source)
+            
+        try:
+            words = r.recognize_google(audio, language="es-ES")
+            words_minusculas = words.lower()
+            print("Has dicho: " + words)
+            
+            palabras = encuentra_palabras(words_minusculas)
+            
+            if 'para' in words.lower():
+                print('Hasta pronto...')
+                break
+            
+            if 'cuánto' in palabras and 'cuesta' in palabras or 'cuestan' in palabras:
+                for i in palabras:
+                    if i in productos(diccionario):
+                        resultado0 = dato(i,precio)
+                        print(i,'cuesta:',resultado0,'$ pesos.')
+                        texto0 = (i + 'cuesta' + resultado0 + 'pesos.')
+                        tts0 = gTTS(text=texto0, lang='es')
+                        tts0.save('output.mp3')
+                        os.system('mpg321 output.mp3')
+                    else:
+                        continue
+                continue
+            
+            if 'qué' in palabras and 'hay' in palabras and 'máquina' in palabras:
+                resultado1 = productos(diccionario)
+                print('En la maquina hay:',resultado1)
+                texto1 = ('En la maquina ai:' + resultado1)
+                tts1 = gTTS(text=texto1, lang='es')
+                tts1.save('output.mp3')
+                os.system('mpg321 output.mp3')
+                continue
+            
+            if 'qué' in palabras and 'hay' in palabras:
+                for i in palabras:
+                    if i in diccionario:
+                        resultado2 = dato(i, diccionario)
+                        print('En la posicio:', i,'hay', resultado2)
+                        texto2 = ('En la posición:' + i + 'ai' + resultado2)
+                        tts2 = gTTS(text=texto2, lang='es')
+                        tts2.save('output.mp3')
+                        os.system('mpg321 output.mp3')
+                    else:
+                        continue
+                continue
+            
+            for i in palabras:
+                if i in diccionario:
+                    resultado3 = dato(i, diccionario)
+                    print('Usted desea:', resultado3)
+                    texto3 = ('Usted desea:'+ resultado3)
+                    tts3 = gTTS(text=texto3, lang='es')
+                    tts3.save('output.mp3')
+                    os.system('mpg321 output.mp3')
+            break
+            
+        except sr.UnknownValueError:
+            print("No entendí lo que dijiste. Por favor, intenta de nuevo.")
+            
+        except sr.RequestError as e:
+            print(f"Error al conectarse al servicio de Google Speech Recognition; {e}")
+except KeyboardInterrupt:
+    print('\nEl programa fue interrumpido por el usuario.')
