@@ -1,4 +1,4 @@
-#Proyecto máquina expendedora con control de voz
+#Proyecto máquina expendedora con control de vo
 
 
 # Raspberry_Pi3_Voice_Recognition
@@ -10,4 +10,5 @@ Tarjeta de sonido USB
 Micrófono
 Fuente de poder 
 Parlante
-
+### Referencias
+1. Utilizamos la página oficial de Raspberry para instalar el software dentrop
