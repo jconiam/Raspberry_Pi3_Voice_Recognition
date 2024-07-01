@@ -1,4 +1,4 @@
-#Proyecto máquina expendedora con control de vo
+#Proyecto máquina expendedora con control de voz
 
 
 # Raspberry_Pi3_Voice_Recognition
