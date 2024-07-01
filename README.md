@@ -9,4 +9,5 @@ Raspberry Pi3
 Tarjeta de sonido USB
 Micrófono
 Fuente de poder 
+Parlante
 
