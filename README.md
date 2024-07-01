@@ -1,6 +1,5 @@
 #Proyecto máquina expendedora con control de voz
-#Descripción del proyecto
-Este proyecto es un prototipo de una maquina expendedora con control de voz, realizado en una Raspberry Pi3
+
 
 # Raspberry_Pi3_Voice_Recognition
 ## Descripción
