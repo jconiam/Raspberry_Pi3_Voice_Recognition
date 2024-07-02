@@ -16,8 +16,8 @@ Parlante
 2. Utilizamos un video de referencia para crear una base para le proyecto.(https://www.youtube.com/watch?v=TMHVLVSsVTs&ab_channel=Electronoobs)
 3. Utilizamos un código de GitHub como base y, clase a clase, lo fuimos mejorando.(https://github.com/AudasWasTaken/Voice_Recognition_RPI/blob/main/speech%20recognition.py)
 ##Cambios de enfoque
-Al inicio del proyecto, decidimos hacer un prototipo accesible que se ajustara a nuestro nivel de conocimiento sobre el tema. Gracias a nuestra constancia en la búsqueda de soluciones a los problemas que surgieron, mantuvimos el mismo enfoque durante todo el proyecto.
-##Integrantes
+Al inicio del proyecto, decidimos hacer un prototipo accesible que se ajustara a nuestro nivel de conocimiento sobre el tema. Gracias a nuestra constancia en la búsqueda de soluciones a los problemas que surgieron, mantuvimos el mismo enfoque durante todo el proyecto
+## Integrantes
 Gabriel Bonfrot, Javier Coñiam y Luciano Salgado
    
 
